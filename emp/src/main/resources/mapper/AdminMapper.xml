@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp.dao.mapper.AdminMapper">
+  <resultMap id="BaseResultMap" type="emp.dao.model.Admin">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+  </resultMap>
+  
+  <select id="selectLogin" resultMap="BaseResultMap">
+  	SELECT admin_id,username,pwd FROM admin WHERE username = #{username} AND pwd = #{pwd};
+  </select>
+</mapper>

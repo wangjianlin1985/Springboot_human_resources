@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp.dao.mapper.AttendanceMapper">
+  <resultMap id="BaseResultMap" type="emp.dao.model.Attendance">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="att_id" jdbcType="INTEGER" property="attId" />
+    <result column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="att_day" jdbcType="VARCHAR" property="attDay" />
+    <result column="checkin" jdbcType="TIMESTAMP" property="checkin" />
+    <result column="checkout" jdbcType="TIMESTAMP" property="checkout" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  
+  <select id="findEmpAttToday" resultMap="BaseResultMap">
+  	select * from attendance where emp_id=#{empId} and att_day=#{day}
+  </select>
+  
+  <select id="findAttendancePage" resultMap="BaseResultMap">
+  	SELECT * FROM attendance ORDER BY STR_TO_DATE(att_day, '%Y-%m-%d') DESC limit #{start}, #{end}
+  </select>
+  
+  <select id="findDeptAttendancePage" resultMap="BaseResultMap">
+  	SELECT * FROM attendance WHERE emp_id IN (SELECT emp_id FROM employee WHERE dept =#{dept}) ORDER BY STR_TO_DATE(att_day, '%Y-%m-%d') DESC limit #{start}, #{end}
+  </select>
+  
+  <select id="findAttendanceByDate" resultMap="BaseResultMap">
+  	SELECT * FROM attendance 
+  	<![CDATA[ 
+  		WHERE att_day >= STR_TO_DATE(#{startDay}, '%Y-%m-%d') AND att_day <= STR_TO_DATE(#{endDay}, '%Y-%m-%d') 
+  		ORDER BY STR_TO_DATE(att_day, '%Y-%m-%d') ASC
+  	]]>
+  </select>
+</mapper>

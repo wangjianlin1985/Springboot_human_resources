@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp.dao.mapper.MettingMapper">
+  <resultMap id="BaseResultMap" type="emp.dao.model.Metting">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="metting_id" jdbcType="INTEGER" property="mettingId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="metting_time" jdbcType="TIMESTAMP" property="mettingTime" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+</mapper>
